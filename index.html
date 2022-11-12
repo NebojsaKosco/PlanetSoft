@@ -9,7 +9,48 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    
+    <div class="background">
+    </div>
+
+    <section class="container-data">
+        <div>
+            <table class="table">
+                <tbody id="table-data">
+                    <tr class="table-head">
+                        <th>Ime osobe</th>
+                        <th>Prezime osobe</th>
+                        <th>Broj telefona</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <button class="btn btn-table" onclick="toggleDivs(true)">Dodaj osobu</button>
+        </div>
+        
+    </section>
+
+    <div class="new-contact-container">
+        <h1 class="title">Dodaj osobu</h1>
+        <div class="form-container">
+            <div>
+                <label for="name">Ime osobe:</label>
+                <input type="text" name="name" id="name" placeholder="Unesite ime" required>
+            </div>
+            <div>
+                <label for="lName">Prezime osobe:</label>
+                <input type="text" name="lName" id="lName" placeholder="Unesite prezime" required>
+            </div>
+            <div>
+                <label for="phoneNum">Broj telefona:</label>
+                <input type="number" name="phoneNum" id="phoneNum" placeholder="Unesite broj telefona" required>
+            </div>
+            <div>
+                <button class="btn btn-back" onclick="toggleDivs(false)">Nazad</button>
+                <button class="btn btn-add">Dodaj</button>
+            </div>
+            </div>
+    </div>
 
     <script src="./js/app.js"></script>
 </body>
