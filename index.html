@@ -25,12 +25,12 @@
             </table>
         </div>
         <div>
-            <button class="btn btn-table" onclick="toggleDivs(true)">Dodaj osobu</button>
+            <button class="btn btn-table" onclick="modalsFunctions(true)">Dodaj osobu</button>
         </div>
         
     </section>
 
-    <div class="new-contact-container">
+    <div class="new-contact">
         <h1 class="title">Dodaj osobu</h1>
         <div class="form-container">
             <div>
@@ -46,8 +46,8 @@
                 <input type="number" name="phoneNum" id="phoneNum" placeholder="Unesite broj telefona" required>
             </div>
             <div>
-                <button class="btn btn-back" onclick="toggleDivs(false)">Nazad</button>
-                <button class="btn btn-add">Dodaj</button>
+                <button class="btn btn-back" onclick="modalsFunctions(false)">Nazad</button>
+                <button class="btn btn-add" onclick="addPeople()">Dodaj</button>
             </div>
             </div>
     </div>
