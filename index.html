@@ -30,11 +30,13 @@
         
     </section>
 
-    <div class="new-contact">
+    <section class="new-contact">
         <h1 class="title">Dodaj osobu</h1>
         <div class="form-container">
-            <div>
-                <label for="name">Ime osobe:</label>
+            <form action="form" id="forms-r">
+
+                <div>
+                    <label for="name">Ime osobe:</label>
                 <input type="text" name="name" id="name" placeholder="Unesite ime" required>
             </div>
             <div>
@@ -46,11 +48,13 @@
                 <input type="number" name="phoneNum" id="phoneNum" placeholder="Unesite broj telefona" required>
             </div>
             <div>
-                <button class="btn btn-back" onclick="modalsFunctions(false)">Nazad</button>
+                <button id="cler" class="btn btn-back" onclick="modalsFunctions(false)">Nazad</button>
                 <button class="btn btn-add" onclick="addPeople()">Dodaj</button>
             </div>
-            </div>
-    </div>
+        </form>
+        </div>
+    </section>
+    
 
     <script src="./js/app.js"></script>
 </body>
