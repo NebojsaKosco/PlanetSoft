@@ -15,19 +15,18 @@ const tableInput=[personOne,personTwo,personThree];
 const myTable=document.getElementById("table-data");
 const writeTable=myTable.innerHTML;
 
-function ispis(){
+function writeInTable(){
     myTable.innerHTML = writeTable;
 
 
 for (var i=0; i<tableInput.length; i++){
-    myTable.innerHTML+="<tr><td>"+tableInput[i].ime +"</td>" + "<td>"+tableInput[i].prezime + "</td>" + "<td>"+tableInput[i].brojTelefona + "</td>"
-
+    myTable.innerHTML+="<tr><td>"+tableInput[i].ime +"</td>" + "<td>"+tableInput[i].prezime + "</td>" + "<td class='numb-tel'>"+tableInput[i].brojTelefona + "<button class='btn-delete' onclick='deletePeople("+ i +")'>X</button>"+"</td></tr>";
 }
 }
-ispis();
-function toggleDivs(showForm){
-    var newContactForm = document.getElementsByClassName('new-contact-container');
-    var contactsTable = document.getElementsByClassName('container-data');
+writeInTable();
+function modalsFunctions(showForm){
+    let newContactForm = document.getElementsByClassName('new-contact');
+    let contactsTable = document.getElementsByClassName('container-data');
 
     if(showForm){
         newContactForm[0].style.display = "block";
@@ -37,4 +36,19 @@ function toggleDivs(showForm){
         newContactForm[0].style.display = "none";
         contactsTable[0].style.display = "block";
     }
+}
+function deletePeople(index){
+    tableInput.splice(index, 1);
+    writeInTable();
+}
+function addPeople(){
+    let newName = document.getElementById("name").value;
+    let newLName = document.getElementById("lName").value;
+    let newNumber = document.getElementById("phoneNum").value;
+    
+
+    tableInput.push(new Osoba(newName, newLName, newNumber));
+
+    
+    writeInTable();
 }
