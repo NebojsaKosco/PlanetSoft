@@ -1,29 +1,26 @@
-class Osoba{
-    constructor(ime,prezime,brojTelefona){
-        this.ime=ime;
-        this.prezime=prezime;
-        this.brojTelefona=brojTelefona;
-    }
-}
-
-const personOne=new Osoba("Nebojsa","Kosco","065731095");
-const personTwo=new Osoba("Nebojsa","Kosco","065731095");
-const personThree=new Osoba("Nebojsa","Kosco","065731095");
-
-const tableInput=[personOne,personTwo,personThree];
-
 const myTable=document.getElementById("table-data");
 const writeTable=myTable.innerHTML;
 
-function writeInTable(){
+
+async function writeInTable(){
+    let data=await getData();
     myTable.innerHTML = writeTable;
-
-
-for (var i=0; i<tableInput.length; i++){
-    myTable.innerHTML+="<tr><td>"+tableInput[i].ime +"</td>" + "<td>"+tableInput[i].prezime + "</td>" + "<td class='numb-tel'>"+tableInput[i].brojTelefona + "<button class='btn-delete' onclick='deletePeople("+ i +")'>X</button>"+"</td></tr>";
+for (let i=0; i<data.length; i++){
+    myTable.innerHTML+="<tr><td>"+data[i].name +"</td>" + "<td>"+data[i].lastName + "</td>" + "<td class='numb-tel'>"+data[i].numberTel + "<button class='btn-delete' onclick='deletePeople("+ i +")'>X</button>"+"</td></tr>";
 }
 }
-writeInTable();
+ writeInTable();
+async function getData(){ 
+try {
+    let response=await fetch("../db.json");
+    let data=await response.json();
+    return data;
+} catch (error) {
+    console.log(error)
+    
+}
+}
+getData();
 function modalsFunctions(showForm){
     let newContactForm = document.getElementsByClassName('new-contact');
     let contactsTable = document.getElementsByClassName('container-data');
@@ -37,18 +34,25 @@ function modalsFunctions(showForm){
         contactsTable[0].style.display = "block";
     }
 }
-function deletePeople(index){
-    tableInput.splice(index, 1);
+
+async function deletePeople(index){
+    let datas=await getData();
+    datas.delete(index);
     writeInTable();
 }
-function addPeople(){
-    let newName = document.getElementById("name").value;
-    let newLName = document.getElementById("lName").value;
-    let newNumber = document.getElementById("phoneNum").value;
-    
 
-    tableInput.push(new Osoba(newName, newLName, newNumber));
+const form = document.getElementById('forms-r');
+form.addEventListener('submit', function handleSubmit(event) {
+  event.preventDefault();
+  form.reset();
+});
 
-    
-    writeInTable();
+async function addPeople(){
+const newObject={
+    name : document.getElementById("name").value,
+    lastName : document.getElementById("lName").value,
+    numberTel : document.getElementById("phoneNum").value,
+}
+const jsonString=JSON.stringify(newObject);
+writeInTable();
 }
